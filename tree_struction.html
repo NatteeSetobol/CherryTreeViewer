@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tree Structure</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="tree">
+        <ul>
+            <li>
+                <span class="caret" id="1">Parent 1</span>
+                <ul class="nested">
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <button onClick="AddParentById('1', 'test')" type="button">click</button>
+    <button onClick="AddChildToParentById('2', 'parent')" type="button">click</button>
+    <script src="script.js"></script>
+</body>
+</html>

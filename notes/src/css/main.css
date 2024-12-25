@@ -1,0 +1,13 @@
+.search { grid-area: search; padding-bottom:30px}
+.main_css{ grid-area: main}
+.grid-container
+{
+    display: grid;
+    grid-template-areas: 
+    'search search search search'
+    'main main main main main'
+    'main main main main main';
+
+    gap: 20px;
+    padding: 10px;
+}

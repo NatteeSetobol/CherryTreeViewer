@@ -1,0 +1,66 @@
+/* Basic tree structure */
+.tree ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.tree li {
+    margin: 0;
+    padding: 0 0 0 1rem; /* Indentation for nested items */
+    line-height: 1.5rem;
+    position: relative;
+}
+
+.tree li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 1px solid #ccc;
+    height: 100%;
+    width: 1rem;
+}
+
+.tree li::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-top: 1px solid #ccc;
+    width: 1rem;
+    height: 0;
+}
+
+.tree li:last-child::before {
+    height: 1rem;
+}
+
+/* Styling for toggle caret */
+.caret {
+    cursor: pointer;
+    user-select: none; /* Prevent text selection */
+}
+
+.caret::before {
+    content: '\25B6'; /* Triangle icon for closed state */
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.caret-down::before {
+    content: '\25BC'; /* Triangle icon for open state */
+}
+
+.caret-none {
+    cursor: pointer;
+    content: none;
+}
+/* Nested list is hidden by default */
+.nested {
+    display: none;
+}
+
+.active {
+    display: block;
+}
