@@ -21,7 +21,6 @@ const Main:React.FC<any> = (selectedContent,setSelectedContent) => {
         {
             if (data)
             {
-                console.log(data.codebox)
                 /*
                     Note: Support multi-codeboxes 
                 */

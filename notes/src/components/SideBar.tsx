@@ -5,18 +5,14 @@ import TreeNodeComponent from './TreeNodeComponent'
 import '../css/SideBar.css'
 import { useGetMainNodesQuery} from '../services/notes'
 
-const SideBar:React.FC<any> = ({setSelectedContent}) => {
+interface SideBarProps {
+    tree: TreeNode;                                // Array of TreeNode objects
+    setTree: React.Dispatch<React.SetStateAction<TreeNode>>;  // State setter for tree
+    setSelectedContent: React.Dispatch<React.SetStateAction<any>>;  // Type it as `any` or adjust to the actual content type
+  }
+
+const SideBar:React.FC<SideBarProps> = ({tree, setTree,setSelectedContent}) => {
     const {data,error,isLoading,isSuccess, isError} = useGetMainNodesQuery("") 
-
-    const [tree, setTree] = useState<TreeNode> ({
-        id: '0',
-        name: 'Root Node',
-        children: [],
-        isExpanded: false,
-        text: "",
-        isPopulated: true,
-    });
-
 
     useEffect(() => { 
         if (isLoading === false) 

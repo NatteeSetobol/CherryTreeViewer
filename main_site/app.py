@@ -25,7 +25,7 @@ def index():
 
 @app.route('/api/GetAllMainNodes')
 def Get_Main_Nodes():
-    results = Query("select node.name,node.node_id from node JOIN children ON node.node_id = children.node_id where children.father_id=?", (12,))
+    results = Query("select node.name,node.node_id from node JOIN children ON node.node_id = children.node_id where children.father_id=(select node_id from children where master_id is NULL and father_id=0 LIMIT 1 )", '')
 
     json_results = json.dumps(results, indent=4)
 
