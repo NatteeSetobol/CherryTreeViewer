@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react'
+    import React, { useEffect} from 'react'
 import { TreeNode } from '../types/TreeNode.type'
 import { useGetNodeMutation} from '../services/notes'
 
@@ -55,6 +55,7 @@ const TreeNodeComponent: React.FC<TreeNodeProps> = ({ node,addNode,toggleExpand,
             if (childNode.isPopulated == false)
             {
                 GetNode(childNode.id)
+                childNode.isPopulated = true;
             }
         }
 
