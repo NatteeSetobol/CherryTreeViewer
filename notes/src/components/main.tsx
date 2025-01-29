@@ -4,6 +4,8 @@ import parse from 'html-react-parser';
 import '../css/main.css'
 import { useGetNoteMutation} from '../services/notes'
 import { connected } from 'process';
+import Prism from 'prismjs';
+import 'prismjs/themes/prism-tomorrow.css'; // Add a theme
 
 const Main:React.FC<any> = (selectedContent,setSelectedContent) => {
     
@@ -14,6 +16,10 @@ const Main:React.FC<any> = (selectedContent,setSelectedContent) => {
     useEffect(() => {
         GetNote('' + selectedContent.selectedContent)
     }, [selectedContent]) 
+
+    useEffect(() => {
+        Prism.highlightAll();
+      }, []);
  
     useEffect(() => {
     }, [elements]) 
@@ -41,9 +47,9 @@ const Main:React.FC<any> = (selectedContent,setSelectedContent) => {
                 {
                     if (data.codebox.length > 0)
                     {
-
                         const newElements: JSX.Element[] = [];
                         let start = 0
+
                         for (let i=0; i < data.codebox.length; i++)
                         {
                             var offset = data.codebox[i].offset;
@@ -61,10 +67,12 @@ const Main:React.FC<any> = (selectedContent,setSelectedContent) => {
                                 </div>
                             );
                           
-                              // Add a div for the code box
+                            // Add a div for the code box
                             newElements.push(
                                 <div key={`codebox-${i}`} className="dynamic-codebox">
-                                  {codeBoxCode}
+                                    <code className={`language-${data.codebox[i].syntax}`}>
+                                        {codeBoxCode}
+                                    </code>
                                 </div>
                             );
 
@@ -83,7 +91,17 @@ const Main:React.FC<any> = (selectedContent,setSelectedContent) => {
                         setElements(newElements);
                     }
                 } else {
-                    newData =  newData.replace(/(\r\n|\n)/g, '<br />');
+                    //newData =  newData.replace(/(\r\n|\n)/g, '<br />');
+
+                    const part1WithLineBreaks = renderTextWithLineBreaks(newData);
+                    const newElements: JSX.Element[] = [];
+                    newElements.push(
+                                <div key={`text-${999}`} className="dynamic-element" > 
+                                  { part1WithLineBreaks}
+                                </div>
+                            );
+                        
+                    setElements(newElements);
                 }
                 
 
@@ -91,14 +109,6 @@ const Main:React.FC<any> = (selectedContent,setSelectedContent) => {
             }
         }
     }, [isLoading])
-
-    const xmlToHtml = (xmlString: string): string => {
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(xmlString,'text/xml');
-        const htmlString = renderToString(parse(xmlDoc.documentElement.outerHTML));
-        return htmlString;
-    }
-
 
     return (
         <div>
