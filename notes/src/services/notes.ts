@@ -18,8 +18,19 @@ export  const notesApi = createApi({
             query: (nodeId) => ({
                 url: `/api/GetNote/` + nodeId
             })
+        }),
+        searchNote: builder.mutation({
+            query: (searchData) => ({
+                url:`/search`,
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(searchData),
+
+            })
         })
 
     })
 })
-export const { useGetMainNodesQuery, useGetNodeMutation, useGetNoteMutation} = notesApi;
+export const { useSearchNoteMutation,useGetMainNodesQuery, useGetNodeMutation, useGetNoteMutation} = notesApi;

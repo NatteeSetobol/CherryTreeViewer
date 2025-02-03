@@ -25,8 +25,6 @@ const SideBar:React.FC<SideBarProps> = ({tree, setTree,setSelectedContent}) => {
         }
     }, [isLoading])
 
-
-
     const AddParentNodes = (parentNodes:any) =>
     {
         for (let i=0; i < parentNodes.length; i++)

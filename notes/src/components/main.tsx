@@ -6,6 +6,7 @@ import { useGetNoteMutation} from '../services/notes'
 import { connected } from 'process';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism-tomorrow.css'; // Add a theme
+import Search from '../components/Search'
 
 const Main:React.FC<any> = (selectedContent,setSelectedContent) => {
     
@@ -112,7 +113,7 @@ const Main:React.FC<any> = (selectedContent,setSelectedContent) => {
 
     return (
         <div>
-            <div className="search">Search: <input type="input" ></input></div>
+                <Search />
                 <div className="main_css">
                     {elements}
                 <div/>
