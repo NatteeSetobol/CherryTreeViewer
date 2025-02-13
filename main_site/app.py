@@ -25,7 +25,7 @@ def index():
 
 @app.route('/api/GetAllMainNodes')
 def Get_Main_Nodes():
-    results = Query("select node.name,node.node_id from node JOIN children ON node.node_id = children.node_id where children.father_id=(select node_id from children where master_id is NULL and father_id=0 LIMIT 1 )", '')
+    results = Query("select node.name,node.node_id from node JOIN children ON node.node_id = children.node_id where children.father_id=(select node_id from children where master_id is NULL and father_id=0 LIMIT 1 ) ORDER BY node.name COLLATE NOCASE ASC", '')
 
     json_results = json.dumps(results, indent=4)
 
@@ -33,7 +33,7 @@ def Get_Main_Nodes():
 
 @app.route('/api/GetNode/<param>')
 def Get_Node(param):
-    results = Query("select node.name,node.node_id from node JOIN children ON node.node_id = children.node_id where children.father_id=?",(param,)) #[dict(zip(columns, row)) for row in rows]
+    results = Query("select node.name,node.node_id from node JOIN children ON node.node_id = children.node_id where children.father_id=? ORDER BY node.name COLLATE NOCASE ASC",(param,)) #[dict(zip(columns, row)) for row in rows]
 
     json_results = json.dumps(results, indent=4)
 

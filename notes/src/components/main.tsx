@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState } from 'react'
 import { renderToString } from 'react-dom/server'
 import parse from 'html-react-parser';  
 import '../css/main.css'
@@ -7,15 +7,28 @@ import { connected } from 'process';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism-tomorrow.css'; // Add a theme
 import Search from '../components/Search'
+import { TreeNode} from '../types/TreeNode.type'
+import { setBoolean } from '../slices/treevisibility';
 
-const Main:React.FC<any> = (selectedContent,setSelectedContent) => {
-    
+interface SideBarProps {
+    searchTree: TreeNode; 
+    setSearchTree: React.Dispatch<React.SetStateAction<TreeNode>>;  // State setter for tree
+    setSelectedContent: React.Dispatch<React.SetStateAction<any>>; 
+    selectedContent: String;
+    addSearchNode: (parentId: string, name: string, newTreeId: string) => void;
+    addExpansion: (parentId: string, expaned: boolean) => void
+    handleDeleteAll: () => void
+
+  }
+
+const Main:React.FC<SideBarProps> = ({handleDeleteAll, addExpansion,addSearchNode,searchTree,setSearchTree ,selectedContent,setSelectedContent}) => 
+{
     const [GetNote, {data, error,isLoading,isSuccess,isError} ] = useGetNoteMutation()
     const [ message, setMessage] = useState<string>('');
     const [elements, setElements] = useState<JSX.Element[]>([]);
 
     useEffect(() => {
-        GetNote('' + selectedContent.selectedContent)
+        GetNote('' +selectedContent)
     }, [selectedContent]) 
 
     useEffect(() => {
@@ -113,7 +126,7 @@ const Main:React.FC<any> = (selectedContent,setSelectedContent) => {
 
     return (
         <div>
-                <Search />
+                <Search handleDeleteAll={handleDeleteAll} addSearchNode={addSearchNode} searchTree={searchTree} setSearchTree={setSearchTree} addExpansion={addExpansion}/>
                 <div className="main_css">
                     {elements}
                 <div/>

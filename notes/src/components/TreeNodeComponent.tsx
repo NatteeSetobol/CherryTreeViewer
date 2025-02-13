@@ -1,18 +1,19 @@
-    import React, { useEffect} from 'react'
+import React, { useEffect} from 'react'
 import { TreeNode } from '../types/TreeNode.type'
 import { useGetNodeMutation} from '../services/notes'
-
+import '../css/TreeNodeComponent.css'
 
 type TreeNodeProps = {
     node: TreeNode,
     addNode: (parentId: string, name: string, newId: string) => void;
     toggleExpand: (nodeId: string) => void;
+    setExpand: (nodeId: string, expaned:boolean) => void;
     setSelectedContent: (setSelectedContent:any) => void; 
 };
 
 
 
-const TreeNodeComponent: React.FC<TreeNodeProps> = ({ node,addNode,toggleExpand, setSelectedContent}) => {
+const TreeNodeComponent: React.FC<TreeNodeProps> = ({ node,addNode,setExpand,toggleExpand, setSelectedContent}) => {
     
     const [GetNode, {data, error,isLoading,isSuccess,isError} ] = useGetNodeMutation()
 
@@ -69,7 +70,7 @@ const TreeNodeComponent: React.FC<TreeNodeProps> = ({ node,addNode,toggleExpand,
     return (
         <div style={{ marginLeft: '20px'}}>
             <div>
-                <button onClick={() => doExpansion(node)}>
+                <button onClick={() => doExpansion(node)} className='expansionButton'>
                     {node.isExpanded ? '-' : '+'}
                 </button> 
                 <a href="#" onClick={ShowText}>{node.name}</a>
@@ -83,6 +84,7 @@ const TreeNodeComponent: React.FC<TreeNodeProps> = ({ node,addNode,toggleExpand,
                         node={child}
                         addNode={addNode}
                         toggleExpand={toggleExpand}
+                        setExpand={setExpand}
                         setSelectedContent={setSelectedContent}
                             />
                         ))}

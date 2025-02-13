@@ -1,18 +1,29 @@
 import React, {useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { TreeNode} from '../types/TreeNode.type'
 import { addNodeToTree,  toggleNodeExpansion} from './TreeHelpers'
 import TreeNodeComponent from './TreeNodeComponent'
 import '../css/SideBar.css'
 import { useGetMainNodesQuery} from '../services/notes'
+import { toggleBoolean} from '../slices/treevisibility'
 
 interface SideBarProps {
-    tree: TreeNode;                                // Array of TreeNode objects
+    tree: TreeNode;
+    searchTree: TreeNode; 
+    setSearchTree: React.Dispatch<React.SetStateAction<TreeNode>>;  // State setter for tree
     setTree: React.Dispatch<React.SetStateAction<TreeNode>>;  // State setter for tree
     setSelectedContent: React.Dispatch<React.SetStateAction<any>>;  // Type it as `any` or adjust to the actual content type
+    setSelectedSearchContent: React.Dispatch<React.SetStateAction<any>>;  // Type it as `any` or adjust to the actual content type
+    addSearchNode: (parentId: string, name: string, newTreeId: string) => void;
+    addExpansion: (parentId: string, expaned: boolean) => void
   }
 
-const SideBar:React.FC<SideBarProps> = ({tree, setTree,setSelectedContent}) => {
+const SideBar:React.FC<SideBarProps> = ({addExpansion,searchTree,setSearchTree,tree, setTree,setSelectedContent,setSelectedSearchContent,addSearchNode}) => {
     const {data,error,isLoading,isSuccess, isError} = useGetMainNodesQuery("") 
+    const [searchTreeVisible,setSearchTreeVisible ] = useState(false);
+    const treeVis = useSelector((state:any) => state.TreeVisibility.value)
+	const dispatch = useDispatch();
+
 
     useEffect(() => { 
         if (isLoading === false) 
@@ -24,6 +35,13 @@ const SideBar:React.FC<SideBarProps> = ({tree, setTree,setSelectedContent}) => {
             }
         }
     }, [isLoading])
+
+    useEffect(() => { 
+    }, [treeVis])
+
+    useEffect(() => {
+
+    }, [searchTree])
 
     const AddParentNodes = (parentNodes:any) =>
     {
@@ -42,21 +60,33 @@ const SideBar:React.FC<SideBarProps> = ({tree, setTree,setSelectedContent}) => {
 
         setTree(prevTree => toggleNodeExpansion(prevTree, nodeId))
     }
-    
 
     return (
-        <div>
-            <TreeNodeComponent node={tree} addNode={addNode} toggleExpand={toggleExpand} setSelectedContent={setSelectedContent} />
-            {
-            data ? (
-                <></>
-            ): isError ? (
-                <>Error has occured </>
-            ): isLoading ? (
-                <></>
-            ): null
+        <div>   
+                {treeVis ? (
+                    <>
+                        <TreeNodeComponent node={searchTree} addNode={addSearchNode} toggleExpand={toggleExpand} setExpand={addExpansion} setSelectedContent={setSelectedContent} />
+                    </>
+                ):
+                (
+                    <>
+                    <TreeNodeComponent  setExpand={addExpansion} node={tree} addNode={addNode} toggleExpand={toggleExpand} setSelectedContent={setSelectedContent} />
+                    {
+                        data ? (
+                            <></>
+                        ): isError ? (
+                            <>Error has occured </>
+                        ): isLoading ? (
+                            <>Loading data</>
+                        ): null
 
-            }
+                        }
+                    </>
+                )
+                }
+                
+
+            
         </div>
     )
 }

@@ -20,6 +20,14 @@ export const addNodeToTree = (node: TreeNode, parentId: string, name: string, ne
     };
   };
 
+  export const deleteAll = (node: TreeNode):TreeNode =>
+  {
+    return {
+        ...node,
+        children: [],
+    }
+  }
+
 export const toggleNodeExpansion = (node: TreeNode, nodeId: string): TreeNode => {
     if (node.id == nodeId)
     {
@@ -28,6 +36,16 @@ export const toggleNodeExpansion = (node: TreeNode, nodeId: string): TreeNode =>
     return {
         ...node,
         children: node.children.map(child => toggleNodeExpansion(child, nodeId))
+    };
+};
+export const setExpansion = (node: TreeNode, nodeId: string, expanded: boolean): TreeNode => {
+    if (node.id == nodeId)
+    {
+        return { ...node, isExpanded: expanded}
+    }
+    return {
+        ...node,
+        children: node.children.map(child => setExpansion(child, nodeId, expanded))
     };
 };
 
