@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import '../css/Home.css'
 import SideBar from './SideBar'
 import { TreeNode} from '../types/TreeNode.type'
@@ -26,6 +26,10 @@ const Home:React.FC<unknown> = () => {
         text: "",
         isPopulated: true,
     });
+
+    useEffect(() => {
+
+    }, [searchTree])
 
     const addSearchNode = (parentId:string, name: string, newTreeId: string) => {
         setSearchTree(prevTree => addNodeToTree(prevTree, parentId,name, newTreeId))
