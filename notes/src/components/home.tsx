@@ -3,7 +3,7 @@ import '../css/Home.css'
 import SideBar from './SideBar'
 import { TreeNode} from '../types/TreeNode.type'
 import Main from './main'
-import { addNodeToTree,  setExpansion,deleteAll} from './TreeHelpers'
+import { addNodeToTree,  toggleNodeExpansion,setExpansion,deleteAll} from './TreeHelpers'
 
 const Home:React.FC<unknown> = () => {
     const [selectedContent, setSelectedContent] = useState<string>('');
@@ -31,10 +31,12 @@ const Home:React.FC<unknown> = () => {
         setSearchTree(prevTree => addNodeToTree(prevTree, parentId,name, newTreeId))
     };
 
-    const toggleExpand = (nodeId: string, expaned:boolean) => {
-
-        setSearchTree(prevTree => setExpansion(prevTree, nodeId, expaned))
+    const toggleExpand = (nodeId: string) => {
+        //setSearchTree(prevTree => setExpansion(prevTree, nodeId, expaned))
+        setSearchTree(prevTree => toggleNodeExpansion(prevTree, nodeId))
     }
+
+
 
     const handleDeleteAll = () => {
         setSearchTree((prevTree) => {

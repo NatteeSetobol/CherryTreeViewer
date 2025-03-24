@@ -15,7 +15,7 @@ interface SideBarProps {
     setSelectedContent: React.Dispatch<React.SetStateAction<any>>;  // Type it as `any` or adjust to the actual content type
     setSelectedSearchContent: React.Dispatch<React.SetStateAction<any>>;  // Type it as `any` or adjust to the actual content type
     addSearchNode: (parentId: string, name: string, newTreeId: string) => void;
-    addExpansion: (parentId: string, expaned: boolean) => void
+    addExpansion: (parentId: string) => void
   }
 
 const SideBar:React.FC<SideBarProps> = ({addExpansion,searchTree,setSearchTree,tree, setTree,setSelectedContent,setSelectedSearchContent,addSearchNode}) => {
@@ -65,7 +65,7 @@ const SideBar:React.FC<SideBarProps> = ({addExpansion,searchTree,setSearchTree,t
         <div>   
                 {treeVis ? (
                     <>
-                        <TreeNodeComponent node={searchTree} addNode={addSearchNode} toggleExpand={toggleExpand} setExpand={addExpansion} setSelectedContent={setSelectedContent} />
+                        <TreeNodeComponent node={searchTree} addNode={addSearchNode} toggleExpand={addExpansion} setExpand={addExpansion} setSelectedContent={setSelectedContent} />
                     </>
                 ):
                 (
