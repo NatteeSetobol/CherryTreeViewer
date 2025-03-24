@@ -32,6 +32,7 @@ const Home:React.FC<unknown> = () => {
     }, [searchTree])
 
     const addSearchNode = (parentId:string, name: string, newTreeId: string) => {
+        console.log("search node")
         setSearchTree(prevTree => addNodeToTree(prevTree, parentId,name, newTreeId))
     };
 
