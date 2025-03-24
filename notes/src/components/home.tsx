@@ -32,12 +32,11 @@ const Home:React.FC<unknown> = () => {
     }, [searchTree])
 
     const addSearchNode = (parentId:string, name: string, newTreeId: string) => {
-        console.log("search node")
         setSearchTree(prevTree => addNodeToTree(prevTree, parentId,name, newTreeId))
     };
 
     const toggleExpand = (nodeId: string) => {
-        setSearchTree(prevTree => setExpansion(prevTree, nodeId, true))
+        //setSearchTree(prevTree => setExpansion(prevTree, nodeId, expaned))
         setSearchTree(prevTree => toggleNodeExpansion(prevTree, nodeId))
     }
 
