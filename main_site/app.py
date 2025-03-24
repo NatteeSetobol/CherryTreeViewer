@@ -77,7 +77,7 @@ def search():
     data = request.json
     query = data.get('query')
     like_pattern = f'%{query}%'
-    results = Query("select * from node where txt like ?", (like_pattern,)) #[dict(zip(columns, row)) for row in rows]
+    results = Query("select * from node where txt like ? or name like ?", (like_pattern,like_pattern)) #[dict(zip(columns, row)) for row in rows]
 
     json_results = json.dumps(results, indent=4)
 
