@@ -36,7 +36,6 @@ const Home:React.FC<unknown> = () => {
     };
 
     const toggleExpand = (nodeId: string) => {
-        console.log("" + nodeId)
         //setSearchTree(prevTree => setExpansion(prevTree, nodeId, expaned))
         setSearchTree(prevTree => toggleNodeExpansion(prevTree, nodeId))
     }

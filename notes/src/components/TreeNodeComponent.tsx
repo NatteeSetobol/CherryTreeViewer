@@ -44,6 +44,7 @@ const TreeNodeComponent: React.FC<TreeNodeProps> = ({ node,addNode,setExpand,tog
 
     const AddChildNodes = (nodeStatus:any) =>
     {
+        console.log("here")
         for (let i=0; i < nodeStatus.data.length; i++)
         {
             addNode('' +nodeStatus.id,nodeStatus.data[i].name,''+nodeStatus.data[i].node_id);
