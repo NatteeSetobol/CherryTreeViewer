@@ -41,11 +41,16 @@ export const toggleNodeExpansion = (node: TreeNode, nodeId: string): TreeNode =>
 export const setExpansion = (node: TreeNode, nodeId: string, expanded: boolean): TreeNode => {
     if (node.id == nodeId)
     {
+        console.log("id is equal");
         return { ...node, isExpanded: expanded}
     }
+    console.log("id is not equal");
+
     return {
+    
         ...node,
         children: node.children.map(child => setExpansion(child, nodeId, expanded))
+        
     };
 };
 
