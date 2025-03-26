@@ -5,5 +5,5 @@ export type TreeNode = {
     isExpanded?: boolean;
     text: string;
     isPopulated?: boolean;
-    isParent?:boolean;
+    isParent:number;
 };

@@ -16,6 +16,7 @@ const Home:React.FC<unknown> = () => {
         isExpanded: false,
         text: "",
         isPopulated: true,
+        isParent: 0
     });
 
     const [searchTree, setSearchTree] = useState<TreeNode> ({
@@ -25,6 +26,7 @@ const Home:React.FC<unknown> = () => {
         isExpanded: false,
         text: "",
         isPopulated: true,
+        isParent: 0
     });
 
     useEffect(() => {

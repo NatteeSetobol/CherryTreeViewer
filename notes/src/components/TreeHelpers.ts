@@ -9,7 +9,7 @@ export const addNodeToTree = (node: TreeNode, parentId: string, name: string, ne
     if (node.id === parentId) {
       return {
         ...node,
-        children: [...node.children, { id: newID, name, children: [], isExpanded: false,text: "", isPopulated: false }],
+        children: [...node.children, { id: newID, name, children: [], isExpanded: false,text: "", isPopulated: false, isParent: 0 }],
       };
     }
   
