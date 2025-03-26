@@ -47,12 +47,12 @@ const SideBar:React.FC<SideBarProps> = ({addExpansion,searchTree,setSearchTree,t
     {
         for (let i=0; i < parentNodes.length; i++)
         {
-            addNode('0',parentNodes[i].name,'' + parentNodes[i].node_id);
+            addNode('0',parentNodes[i].name,'' + parentNodes[i].node_id,parentNodes[i].isParent);
         }
     }
 
-    const addNode = (parentId:string, name: string, newTreeId: string) => {
-        setTree(prevTree => addNodeToTree(prevTree, parentId,name, newTreeId))
+    const addNode = (parentId:string, name: string, newTreeId: string, isParent: number) => {
+        setTree(prevTree => addNodeToTree(prevTree, parentId,name, newTreeId, isParent))
     };
 
 

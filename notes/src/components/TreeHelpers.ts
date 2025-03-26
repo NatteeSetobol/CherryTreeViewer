@@ -2,21 +2,21 @@ import { TreeNode} from '../types/TreeNode.type'
 import { getTreeid, increaseid} from '../slices/treeid'
 import { useDispatch } from "react-redux"
 
-export const addNodeToTree = (node: TreeNode, parentId: string, name: string, newID: string): TreeNode => {
+export const addNodeToTree = (node: TreeNode, parentId: string, name: string, newID: string, isParent: number): TreeNode => {
     // If the current node is the parent, add the new child
     //var newNumber:number = getTreeid();
     //newNumber = newNumber + 1;
     if (node.id === parentId) {
       return {
         ...node,
-        children: [...node.children, { id: newID, name, children: [], isExpanded: false,text: "", isPopulated: false, isParent: 0 }],
+        children: [...node.children, { id: newID, name,isParent, children: [], isExpanded: false,text: "", isPopulated: false }],
       };
     }
   
     // If not, recursively check and update the children, but only where necessary
     return {
       ...node,
-      children: node.children.map(child => addNodeToTree(child, parentId, name, newID)), // Update only the branch where the parent exists
+      children: node.children.map(child => addNodeToTree(child, parentId, name, newID, isParent)), // Update only the branch where the parent exists
     };
   };
 
