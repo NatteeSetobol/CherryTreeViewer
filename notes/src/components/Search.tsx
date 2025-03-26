@@ -9,7 +9,7 @@ import '../css/search.css'
 interface SideBarProps {
     searchTree: TreeNode; 
     setSearchTree: React.Dispatch<React.SetStateAction<TreeNode>>;  // State setter for treea
-    addSearchNode: (parentId: string, name: string, newTreeId: string) => void;
+    addSearchNode: (parentId: string, name: string, newTreeId: string, isParent: number) => void;
     addExpansion: (parentId: string, expaned: boolean) => void
     handleDeleteAll: () => void
   }
@@ -39,7 +39,7 @@ const Search:React.FC<SideBarProps> = ({handleDeleteAll,addExpansion,searchTree,
             if (data)
             {
                 data.map((items:any) => {
-                    addSearchNode("0",items.name,items.node_id)
+                    addSearchNode("0",items.name,items.node_id, items.isParent )
                 } )
                 addExpansion("0", true)
             }

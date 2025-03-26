@@ -6,7 +6,7 @@ import { notEqual } from 'assert';
 
 type TreeNodeProps = {
     node: TreeNode,
-    addNode: (parentId: string, name: string, newId: string) => void;
+    addNode: (parentId: string, name: string, newId: string, isParent: number) => void;
     toggleExpand: (nodeId: string) => void;
     setExpand: (nodeId: string, expaned:boolean) => void;
     setSelectedContent: (setSelectedContent:any) => void; 
@@ -47,7 +47,7 @@ const TreeNodeComponent: React.FC<TreeNodeProps> = ({ node,addNode,setExpand,tog
     {
         for (let i=0; i < nodeStatus.data.length; i++)
         {
-            addNode('' +nodeStatus.id,nodeStatus.data[i].name,''+nodeStatus.data[i].node_id);
+            addNode('' +nodeStatus.id,nodeStatus.data[i].name,''+nodeStatus.data[i].node_id, nodeStatus.data[i].isParent);
         }
     }
 

@@ -33,8 +33,8 @@ const Home:React.FC<unknown> = () => {
 
     }, [searchTree])
 
-    const addSearchNode = (parentId:string, name: string, newTreeId: string) => {
-        setSearchTree(prevTree => addNodeToTree(prevTree, parentId,name, newTreeId))
+    const addSearchNode = (parentId:string, name: string, newTreeId: string, isParent: number) => {
+        setSearchTree(prevTree => addNodeToTree(prevTree, parentId,name, newTreeId, isParent))
     };
 
     const toggleExpand = (nodeId: string) => {
@@ -54,7 +54,7 @@ const Home:React.FC<unknown> = () => {
     return (
         <div className="grid-container">
             <div className="item1">
-                <SideBar setSearchTree={setSearchTree} addSearchNode={addSearchNode} searchTree={searchTree} tree={tree} setTree={setTree} setSelectedSearchContent={setSelectedSearchContent} setSelectedContent={setSelectedContent} addExpansion={toggleExpand}/>
+                <SideBar setSearchTree={setSearchTree} addSearchNode={addSearchNode} searchTree={searchTree} tree={tree} setTree={setTree} setSelectedSearchContent={setSelectedSearchContent} setSelectedContent={setSelectedContent} addExpansion={toggleExpand }/>
             </div>
             <div className="item2">
                 <Main handleDeleteAll={handleDeleteAll} addSearchNode={addSearchNode} setSearchTree={setSearchTree} searchTree={searchTree} selectedContent={selectedContent} setSelectedContent={setSelectedContent} addExpansion={toggleExpand}  />

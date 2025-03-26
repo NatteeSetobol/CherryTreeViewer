@@ -15,7 +15,7 @@ interface SideBarProps {
     setSearchTree: React.Dispatch<React.SetStateAction<TreeNode>>;  // State setter for tree
     setSelectedContent: React.Dispatch<React.SetStateAction<any>>; 
     selectedContent: String;
-    addSearchNode: (parentId: string, name: string, newTreeId: string) => void;
+    addSearchNode: (parentId: string, name: string, newTreeId: string, isParent: number) => void;
     addExpansion: (parentId: string, expaned: boolean) => void
     handleDeleteAll: () => void
 
