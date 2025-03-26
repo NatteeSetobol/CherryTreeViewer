@@ -33,7 +33,7 @@ def Get_Main_Nodes():
 
 @app.route('/api/GetNode/<param>')
 def Get_Node(param):
-    results = Query("select node.name,node.node_id from node JOIN children ON node.node_id = children.node_id where children.father_id=? ORDER BY node.name COLLATE NOCASE ASC",(param,)) #[dict(zip(columns, row)) for row in rows]
+    results = Query("select node.name,node.node_id,(SELECT COUNT(*) FROM children WHERE father_id = node.node_id) > 0 AS is_parent from node JOIN children ON node.node_id = children.node_id where children.father_id=? ORDER BY node.name COLLATE NOCASE ASC",(param,)) #[dict(zip(columns, row)) for row in rows]
 
     json_results = json.dumps(results, indent=4)
 
