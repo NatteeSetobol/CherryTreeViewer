@@ -71,18 +71,10 @@ const TreeNodeComponent: React.FC<TreeNodeProps> = ({ node,addNode,setExpand,tog
     return (
         <div style={{ marginLeft: '20px'}}>
             <div>
-                { node.isParent ? (
-                    <>
                         <button onClick={() => doExpansion(node)} className='expansionButton'>
                             {node.isExpanded ? '-' : '+'}
                         </button> 
                         <a href="#" onClick={ShowText}>{node.name}</a>
-                    </>
-                ): (
-                    <></>
-
-                )
-                }
             </div>
 
             {node.isExpanded && (
