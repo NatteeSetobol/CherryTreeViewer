@@ -64,6 +64,11 @@ const Search:React.FC<SideBarProps> = ({handleDeleteAll,addExpansion,searchTree,
        
     }
 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+          searchOnClick();
+        }
+      };
 
     return (
         <>
@@ -72,7 +77,8 @@ const Search:React.FC<SideBarProps> = ({handleDeleteAll,addExpansion,searchTree,
                     Search: 
                 </div>
                 <div>
-                    <input type="input" onChange={searchOnChange} value={searchQuery} />
+                    <input type="input" onChange={searchOnChange} value={searchQuery} onKeyDown={handleKeyDown} />
+
                     <button onClick={searchOnClick} className="searchButton">Search</button>
                     <button onClick={searchReset}>Reset</button>
                 </div>

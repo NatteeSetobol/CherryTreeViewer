@@ -79,15 +79,11 @@ const TreeNodeComponent: React.FC<TreeNodeProps> = ({ node,addNode,setExpand,tog
                     </>
                 ): (
                     <>
-                        <div>
-                            <ul></ul>
-                        </div>
-                        
+                        <span className="dot"></span>
                     </>
 
                 )
                 }
-
                 <a href="#" onClick={ShowText}>{node.name}</a>
             </div>
 
