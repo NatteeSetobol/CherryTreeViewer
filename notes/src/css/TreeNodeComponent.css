@@ -10,4 +10,7 @@
     background-color: #000;
     border-radius: 50%;
     display: inline-block;
+
+    margin-right: 10px;
+    margin-bottom: 5px;
   }
