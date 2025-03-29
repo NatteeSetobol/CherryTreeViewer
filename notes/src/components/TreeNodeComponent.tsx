@@ -78,7 +78,12 @@ const TreeNodeComponent: React.FC<TreeNodeProps> = ({ node,addNode,setExpand,tog
                         </button> 
                     </>
                 ): (
-                    <>*</>
+                    <>
+                        <div>
+                            <ul></ul>
+                        </div>
+                        
+                    </>
 
                 )
                 }
