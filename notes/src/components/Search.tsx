@@ -64,7 +64,7 @@ const Search:React.FC<SideBarProps> = ({handleDeleteAll,addExpansion,searchTree,
        
     }
 
-    const handleKeyDown = (event) => {
+    const handleKeyDown = (event:React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
           searchOnClick();
         }
