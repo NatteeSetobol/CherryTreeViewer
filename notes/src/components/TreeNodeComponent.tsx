@@ -77,6 +77,7 @@ const TreeNodeComponent: React.FC<TreeNodeProps> = ({ node,addNode,setExpand,tog
     return (
         <div style={{ marginLeft: '20px'}}>
             <div>
+
                 { node.isParent == 1 ? (
                     <>
                         <button onClick={() => doExpansion(node)} className='expansionButton'>
@@ -85,12 +86,14 @@ const TreeNodeComponent: React.FC<TreeNodeProps> = ({ node,addNode,setExpand,tog
                     </>
                 ): (
                     <>
-                        <span className="dot"></span>
                     </>
 
                 )
                 }
-                <a href="#" onClick={ShowText} onKeyDown={handleKeyDown}>{node.name}</a>
+                <a href="#" onClick={ShowText} onKeyDown={handleKeyDown}> 
+                    <span className="dot"></span>
+                    {node.name}
+                </a>
             </div>
 
             {node.isExpanded && (

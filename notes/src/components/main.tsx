@@ -9,6 +9,8 @@ import 'prismjs/themes/prism-tomorrow.css'; // Add a theme
 import Search from '../components/Search'
 import { TreeNode} from '../types/TreeNode.type'
 import { setBoolean } from '../slices/treevisibility';
+import he from 'he';
+
 
 interface SideBarProps {
     searchTree: TreeNode; 
@@ -54,6 +56,8 @@ const Main:React.FC<SideBarProps> = ({handleDeleteAll, addExpansion,addSearchNod
             if (data)
             {
                 let newData = data.message[0].txt
+
+                newData = he.decode(newData)
 
                 newData = newData.replace(/<[^>]*>/g, '')
                 

@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "he": "^1.2.0"
+  },
+  "devDependencies": {
+    "@types/he": "^1.2.3"
+  }
+}
