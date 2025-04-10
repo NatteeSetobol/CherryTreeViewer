@@ -57,10 +57,10 @@ const Main:React.FC<SideBarProps> = ({handleDeleteAll, addExpansion,addSearchNod
             {
                 let newData = data.message[0].txt
 
-                newData = he.decode(newData)
 
-                //newData = newData.replace(/<[^>]*>/g, '')
+                newData = newData.replace(/<[^>]*>/g, '')
                 
+                newData = he.decode(newData)
                 if (data.codebox)
                 {
                     if (data.codebox.length > 0)
