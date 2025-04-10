@@ -59,7 +59,7 @@ const Main:React.FC<SideBarProps> = ({handleDeleteAll, addExpansion,addSearchNod
 
                 newData = he.decode(newData)
 
-                newData = newData.replace(/<[^>]*>/g, '')
+                //newData = newData.replace(/<[^>]*>/g, '')
                 
                 if (data.codebox)
                 {
