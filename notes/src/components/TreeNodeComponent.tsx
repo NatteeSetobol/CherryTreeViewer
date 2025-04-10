@@ -90,7 +90,7 @@ const TreeNodeComponent: React.FC<TreeNodeProps> = ({ node,addNode,setExpand,tog
 
                 )
                 }
-                <a href="#" onClick={ShowText} onKeyDown={handleKeyDown}> 
+                <a href='' onClick={ShowText} onKeyDown={handleKeyDown}> 
                     <span className="dot"></span>
                     {node.name}
                 </a>
