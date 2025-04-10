@@ -68,6 +68,7 @@ const TreeNodeComponent: React.FC<TreeNodeProps> = ({ node,addNode,setExpand,tog
         setSelectedContent(node.id);
     }
     const handleKeyDown = (event:React.KeyboardEvent<HTMLAnchorElement>) => {
+        event.preventDefault(); 
         if (event.key === 'Enter') {
             doExpansion(node)
         }
@@ -90,7 +91,7 @@ const TreeNodeComponent: React.FC<TreeNodeProps> = ({ node,addNode,setExpand,tog
 
                 )
                 }
-                <a href='' onClick={ShowText} onKeyDown={handleKeyDown}> 
+                <a href="#" onClick={ShowText} onKeyDown={handleKeyDown}> 
                     <span className="dot"></span>
                     {node.name}
                 </a>
